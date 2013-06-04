@@ -1,0 +1,16 @@
+<template name="browseList">
+	List of all new users that signed up
+	<br/>
+	{{count}}
+	<br/>
+	{{#each lists}}
+		{{email}}<br/>
+		{{> path}}
+		<br/>
+		-------------<br/>
+	{{/each}}
+</template>
+
+<template name='path'>
+	<svg width='500' height='500' class="yo"></svg>
+</template>

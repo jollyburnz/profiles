@@ -1,0 +1,41 @@
+<template name="homepage">
+	{{> padtest}}
+	{{> portrait}}
+	{{> email}}
+</template>
+
+<template name="padtest">
+	{{#if notdone}}
+		<div id="test"></div>
+		<br/>
+		<br/>
+		Hello, this is the pad test for Jotalog
+		<br/>
+		<canvas id="canvastest" width="500px" height="500px" style='display:none'></canvas>
+	{{/if}}
+</template>
+
+<template name='portrait'>
+  {{#if done}}
+    <p><This is the portrait view/p>
+    <a href="{{padviewPath}}">Browse</a>
+    <div id='svgtest2'></div>
+  {{/if}}
+</template>
+
+<template name="email">
+  {{#if done}}
+    <p>Email sent! Thank you for your interest in us.</p>
+  {{else}}
+    <label for="email">Enter your email address to receive news about us</label><br/>
+    <input type="text" id="email" size="45" />
+    <input type="button" id="btn" value="Submit" />
+    <br/>
+    {{#each paths}}
+		{{path_string}}
+		<br/>
+		--------------------
+		<br/>
+    {{/each}}
+  {{/if}}
+</template>

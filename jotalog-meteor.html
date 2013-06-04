@@ -1,0 +1,41 @@
+<head>
+  <title>jotalog-meteor</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="wrap">
+      {{> slider}}
+    </div>
+  </div>
+  {{>buttons}}
+</body>
+
+<template name="slider">
+  <div class="current">
+    {{> onePage currentScreen}}
+  </div>
+  <div class="next">
+    {{> onePage nextScreen}}
+  </div>
+</template>
+
+<template name="onePage">
+  {{#if this}}
+    {{this}}
+    {{renderPage}}
+  {{/if}}  
+</template>
+
+<template name="buttons">
+  <form>
+    <input name="page"></input>
+    <button class="goto">Goto >></button>
+  </form>
+</template>
+
+<template name="hello">
+  <h1>Hello World!</h1>
+  {{greeting}}
+  <input type="button" value="Click" />
+</template>
