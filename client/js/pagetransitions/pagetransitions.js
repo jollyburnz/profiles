@@ -391,7 +391,7 @@ PageTransitions = function() {
 		$inpage.attr( 'class', $inpage.data( 'originalClassList' ) + ' pt-page-current' );
 	}
 
-	init();
+	//init();
 
 	return { 
 		init : init 
