@@ -1,3 +1,8 @@
+Meteor.startup ->
+  Session.set 'tx', 0
+  Session.set 'ty', 0
+  Session.set 's', 1
+
 renderAxes = (canvas) ->
   #console.log 'axes', @xAxis, @yAxis, @yScale, @xScale
   #axes crap
@@ -56,9 +61,9 @@ pan_and_zoom = ->
   #oldty = window.ty
   #olds = window.s
   
-  oldtx = Session.get 'tx' or 0
-  oldty = Session.get 'ty' or 0
-  olds = Session.get 's' or 1
+  oldtx = Session.get 'tx'
+  oldty = Session.get 'ty'
+  olds = Session.get 's'
 
   zoom = d3.behavior.zoom()
     .scaleExtent([0.1, 10])
@@ -180,7 +185,7 @@ rendersvg = ->
     .attr('height', $(document).height())
   @group = @canvas.append('g').attr('class', 'svgavatars')
     .attr('transform', "translate(#{Session.get('tx')},#{Session.get('ty')}) scale(#{Session.get('s')})")
-
+  
   renderAxes(@canvas)
   rendersvgPaths(@group)
   pan_and_zoom()

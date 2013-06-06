@@ -4,6 +4,20 @@ body{
   padding: 0;
 }
 
+#home{
+  background: #9b59b6;
+  color: #fff;
+}
+
+#browse{
+  background: #3498db;
+  color: #fff;
+}
+
+#pad{
+  background: #FFFFFF;
+}
+
 /*
 .current-path{
 	fill: none;
@@ -39,24 +53,24 @@ body{
 
 /* transitions to pad view */
 .to_padview .current, .from_padview .current{
-  -webkit-transform-origin: 50% 50%;
-  -webkit-animation: flipOutLeft .5s both ease-in;
-  -moz-transform-origin: 50% 50%;
-  -moz-animation: flipOutLeft .5s both ease-in;
-  transform-origin: 50% 50%;
-  animation: flipOutLeft .5s both ease-in;
+  -webkit-transform-origin: 50% 50% !important;
+  -webkit-animation: flipOutLeft .5s both ease-in !important;
+  -moz-transform-origin: 50% 50% !important;
+  -moz-animation: flipOutLeft .5s both ease-in !important;
+  transform-origin: 50% 50% !important;
+  animation: flipOutLeft .5s both ease-in !important;
 }
 
 .to_padview .next, .from_padview .next{
-  -webkit-transform-origin: 50% 50%;
-  -webkit-animation: flipInRight .5s both ease-out;
-  -moz-transform-origin: 50% 50%;
-  -moz-animation: flipInRight .5s both ease-out;
-  transform-origin: 50% 50%;
-  animation: flipInRight .5s both ease-out;
-  -webkit-animation-delay: .5s;
-  -moz-animation-delay: .5s;
-  animation-delay: .5s;
+  -webkit-transform-origin: 50% 50% !important;
+  -webkit-animation: flipInRight .5s both ease-out !important;
+  -moz-transform-origin: 50% 50% !important;
+  -moz-animation: flipInRight .5s both ease-out !important;
+  transform-origin: 50% 50% !important;
+  animation: flipInRight .5s both ease-out !important;
+  -webkit-animation-delay: .5s !important;
+  -moz-animation-delay: .5s !important;
+  animation-delay: .5s !important;
 }
 
 /* transitions from pad view */
@@ -82,3 +96,19 @@ body{
   animation-delay: .5s;
 }
 */
+
+/* transitions to browseList */
+.to_homepage .current, .to_browseList .current{
+  -webkit-animation: scaleDownCenter .4s ease-in both;
+  -moz-animation: scaleDownCenter .4s ease-in both;
+  animation: scaleDownCenter .4s ease-in both;
+}
+
+.to_homepage .next, .to_browseList .next{
+  -webkit-animation: scaleUpCenter .4s ease-out both;
+  -moz-animation: scaleUpCenter .4s ease-out both;
+  animation: scaleUpCenter .4s ease-out both;
+  -webkit-animation-delay: .4s;
+  -moz-animation-delay: .4s;
+  animation-delay: .4s;
+}
