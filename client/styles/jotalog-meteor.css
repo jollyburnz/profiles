@@ -21,20 +21,24 @@ body{
 #menu{
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
   z-index: 2;
 }
 
-.to_padview .next{
+#padddd{
   background: #ffffff;
 }
 
+.to_padview .next{
+  //background: #ffffff;
+}
+
 .to_browseList .next{
-  background: #2ecc71;
+  //background: #2ecc71;
 }
 
 /* transitions to pad view */
-.to_padview .current{
+.to_padview .current, .from_padview .current{
   -webkit-transform-origin: 50% 50%;
   -webkit-animation: flipOutLeft .5s both ease-in;
   -moz-transform-origin: 50% 50%;
@@ -43,7 +47,7 @@ body{
   animation: flipOutLeft .5s both ease-in;
 }
 
-.to_padview .next{
+.to_padview .next, .from_padview .next{
   -webkit-transform-origin: 50% 50%;
   -webkit-animation: flipInRight .5s both ease-out;
   -moz-transform-origin: 50% 50%;
@@ -56,6 +60,7 @@ body{
 }
 
 /* transitions from pad view */
+/*
 .from_padview .current{
   -webkit-transform-origin: 50% 50%;
   -webkit-animation: flipOutRight .5s both ease-in;
@@ -76,3 +81,4 @@ body{
   -moz-animation-delay: .5s;
   animation-delay: .5s;
 }
+*/

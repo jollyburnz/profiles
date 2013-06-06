@@ -55,13 +55,10 @@ pan_and_zoom = ->
   #oldtx = window.tx
   #oldty = window.ty
   #olds = window.s
-  #oldtx = window.tx || 0
-  #oldty = window.ty || 0
-  #olds = window.s || 1
   
-  oldtx = 0
-  oldty = 0
-  olds = 1
+  oldtx = Session.get 'tx' or 0
+  oldty = Session.get 'ty' or 0
+  olds = Session.get 's' or 1
 
   zoom = d3.behavior.zoom()
     .scaleExtent([0.1, 10])
@@ -77,7 +74,7 @@ pan_and_zoom = ->
       console.log "#{oldty} x #{d3.event.scale} + #{d3.event.translate[1]} = #{ty}", ":: y"
       console.log "#{olds} x #{d3.event.scale} = #{s}", ":: scale"
       console.log "----------------"
-      console.log xys
+      #console.log xys
       redraw(xys)
     )
   @canvas.call(zoom)
@@ -86,6 +83,11 @@ redraw = (xys) ->
   tx = xys[0]
   ty = xys[1]
   s = xys[2]
+
+  Session.set 'tx', tx
+  Session.set 'ty', ty
+  Session.set 's', s
+
   #console.log xys, 'redraw coordinates'
   #number of ticks is based on the scale and dimensions, size of each tick is 100x100
   new_xTickNum = Math.round @width/(500*s)
@@ -143,6 +145,8 @@ rendersvgPaths = (group) ->
       console.log Emails.find().fetch()
       console.log Emails.find().count()
 
+    #console.log window.tx, window.ty, window.s
+
     max_row = Math.ceil Math.sqrt(Emails.find().count())
 
     group.selectAll('g').data(Emails.find().fetch())
@@ -175,6 +179,7 @@ rendersvg = ->
     .attr('width', $(document).width())
     .attr('height', $(document).height())
   @group = @canvas.append('g').attr('class', 'svgavatars')
+    .attr('transform', "translate(#{Session.get('tx')},#{Session.get('ty')}) scale(#{Session.get('s')})")
 
   renderAxes(@canvas)
   rendersvgPaths(@group)
