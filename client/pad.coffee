@@ -38,7 +38,7 @@ renderAxes = (canvas) ->
   .selectAll('g')
     .attr('class', 'x')
   .selectAll("line")
-    .style("stroke", "#eee")
+    .style("stroke", "#ecf0f1")
 
   canvas.insert("g", ":first-child")
     .attr("class", "y-axis")
@@ -47,7 +47,7 @@ renderAxes = (canvas) ->
   .selectAll('g')
     .attr('class', 'y')
   .selectAll("line")
-    .style("stroke", "#eee")
+    .style("stroke", "#ecf0f1")
 
 pan_and_zoom = ->
   console.log @canvas
@@ -55,9 +55,14 @@ pan_and_zoom = ->
   #oldtx = window.tx
   #oldty = window.ty
   #olds = window.s
-  oldtx = window.tx || 0
-  oldty = window.ty || 0
-  olds = window.s || 1
+  #oldtx = window.tx || 0
+  #oldty = window.ty || 0
+  #olds = window.s || 1
+  
+  oldtx = 0
+  oldty = 0
+  olds = 1
+
   zoom = d3.behavior.zoom()
     .scaleExtent([0.1, 10])
     .on "zoom", (=>
@@ -68,10 +73,10 @@ pan_and_zoom = ->
       window.ty = d3.event.translate[1] + oldty * d3.event.scale
       window.s = olds * d3.event.scale
       xys = [tx, ty, s]
-      #onsole.log "#{oldtx} x #{d3.event.scale} + #{d3.event.translate[0]} = #{tx}", ":: x"
-      #console.log "#{oldty} x #{d3.event.scale} + #{d3.event.translate[1]} = #{ty}", ":: y"
-      #console.log "#{olds} x #{d3.event.scale} = #{s}", ":: scale"
-      #console.log "----------------"
+      console.log "#{oldtx} x #{d3.event.scale} + #{d3.event.translate[0]} = #{tx}", ":: x"
+      console.log "#{oldty} x #{d3.event.scale} + #{d3.event.translate[1]} = #{ty}", ":: y"
+      console.log "#{olds} x #{d3.event.scale} = #{s}", ":: scale"
+      console.log "----------------"
       console.log xys
       redraw(xys)
     )
@@ -110,7 +115,7 @@ redraw = (xys) ->
     .attr('transform', (d) => "translate(#{@xScale(d)*s+tx}, 0)")
 
   gxe.append('line')
-    .attr("stroke", '#eee')
+    .attr("stroke", '#ecf0f1')
     .attr("y2", -@height)
     .attr("x2", 0)
 
@@ -121,7 +126,7 @@ redraw = (xys) ->
     .attr('transform', (d) => "translate(0, #{@yScale(d)*s+ty})")
 
   gye.append('line')
-    .attr("stroke", '#eee')
+    .attr("stroke", '#ecf0f1')
     .attr("y2", 0)
     .attr("x2", @width)
 

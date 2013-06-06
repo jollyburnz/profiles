@@ -8,15 +8,17 @@
 </body>
 
 <template name="slider">
-  <a href="/">/</a>
-  <a href="{{browseListPath}}">Browse</a>
-  <a href="{{padviewPath}}">Pad</a>
-  <a href="{{transitiontestPath}}">Transition</a>
+  <div id="menu">
+    <a href="/">Home</a>
+    <a href="{{browseListPath}}">Browse</a>
+    <a href="{{padviewPath}}">Pad</a>
+    <a href="{{transitiontestPath}}">Transition</a>
+  </div>
   <div id="pt-main" class="pt-perspective">
-    <div class="current pt-page pt-page-flipOutTop">
+    <div class="current pt-page">
       {{> onePage currentScreen}}
     </div>
-    <div class="next pt-page pt-page-flipInBottom pt-page-delay500">
+    <div class="next pt-page">
       {{> onePage nextScreen}}
     </div>
   </div>
