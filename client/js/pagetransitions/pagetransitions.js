@@ -64,7 +64,7 @@ PageTransitions = function() {
 	}
 
 	function nextPage( animation ) {
-
+		
 		if( isAnimating ) {
 			return false;
 		}
