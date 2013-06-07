@@ -5,7 +5,7 @@ Meteor.startup ->
 
   Session.set 'xtick', 1
   Session.set 'ytick', 1
-  
+
   Session.set 'newxscale', null
   Session.set 'newyscale', null
 
@@ -22,7 +22,7 @@ renderAxes = (canvas) ->
   @xtick = Session.get 'xtick'
   @ytick = Session.get 'ytick'
 
-  console.log @width, @height, 'w/h'
+  console.log @width, @height, 'w/h', @xtick, @ytick
 
   #each tick size would be initially 100px x 100px
   @xTickNum = Math.round @width/500
