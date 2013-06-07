@@ -4,7 +4,7 @@ body{
   padding: 0;
 }
 
-#home, #browse, #pad, #transition{
+#home, #browse, #pad, #transition, #test1{
   width: 100%;
   height: 100%;
 }
@@ -17,12 +17,14 @@ body{
 #browse{
   background: #3498db;
   color: #fff;
+  position: relative;
+  right: 0;
 }
 
 #pad{
 }
 
-#transition{
+#test1{
   background: #cc2200;
 }
 
@@ -61,6 +63,7 @@ body{
 
 /* transitions to pad view */
 .to_padview .current, .from_padview .current{
+  display: block;
   -webkit-transform-origin: 50% 50% !important;
   -webkit-animation: flipOutLeft .5s both ease-in !important;
   -moz-transform-origin: 50% 50% !important;
@@ -70,6 +73,7 @@ body{
 }
 
 .to_padview .next, .from_padview .next{
+  display: block;
   -webkit-transform-origin: 50% 50% !important;
   -webkit-animation: flipInRight .5s both ease-out !important;
   -moz-transform-origin: 50% 50% !important;
@@ -105,18 +109,22 @@ body{
 }
 */
 
-/* transitions to browseList */
-.to_homepage .current, .to_browseList .current{
-  -webkit-transform-origin: 0% 50%;
-  -webkit-animation: rotatePushLeft .8s both ease;
-  -moz-transform-origin: 0% 50%;
-  -moz-animation: rotatePushLeft .8s both ease;
-  transform-origin: 0% 50%;
-  animation: rotatePushLeft .8s both ease;
+.transitioning .current, .transitioning .next{
+  display: block;
 }
 
-.to_homepage .next, .to_browseList .next{
+
+/* transitions to browseList */
+.to_homepage .current, .to_browseList .current, .to_test1 .current{
+  -webkit-animation: fade .7s ease both;
+  -moz-animation: fade .7s ease both;
+  animation: fade .7s ease both;
+}
+
+.to_homepage .next, .to_browseList .next, .to_test1 .next{
   -webkit-animation: moveFromRight .6s ease both;
   -moz-animation: moveFromRight .6s ease both;
   animation: moveFromRight .6s ease both;
+  transition:opacity 0.5s linear
+  z-index: 999;
 }

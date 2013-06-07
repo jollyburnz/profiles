@@ -14,3 +14,7 @@ Template.path.rendered = ->
 		.attr('fill', 'none')
 		.attr('stroke', 'black')
 		.attr('stroke-width', 4)
+
+Template.browseList.rendered = ->
+	console.log $(@), 'browser'
+	$(@).addClass 'pt-page-current'

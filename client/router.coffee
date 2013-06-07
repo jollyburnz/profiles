@@ -3,4 +3,5 @@ Meteor.Router.add
 	"/browse": "browseList"
 	"/pad": 'padview'
 	'/transition': "transitiontest"
+	'/test': "test1"
 	"/:page" : (page) -> page

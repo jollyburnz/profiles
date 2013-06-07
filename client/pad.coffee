@@ -3,51 +3,69 @@ Meteor.startup ->
   Session.set 'ty', 0
   Session.set 's', 1
 
+  Session.set 'xtick', 1
+  Session.set 'ytick', 1
+  
+  Session.set 'newxscale', null
+  Session.set 'newyscale', null
+
 renderAxes = (canvas) ->
   #console.log 'axes', @xAxis, @yAxis, @yScale, @xScale
   #axes crap
   @width = $(document).width()
   @height = $(document).height()
+  @tx = Session.get 'tx'
+  @ty = Session.get 'ty'
+  @s = Session.get 's'
+
+
+  @xtick = Session.get 'xtick'
+  @ytick = Session.get 'ytick'
+
   console.log @width, @height, 'w/h'
 
   #each tick size would be initially 100px x 100px
   @xTickNum = Math.round @width/500
   @yTickNum = Math.round @height/500
+
   console.log @xTickNum, @yTickNum
 
   @xScale = d3.scale.linear()
-    .domain([0, @width])
+    .domain([ (0 - @tx) / @s, (@width - @tx) / @s])
     .range([0, @width])
 
   @yScale = d3.scale.linear()
-    .domain([@height, 0])
+    .domain([ (@height - @ty) / @s, (0 - @ty) / @s ])
     .range([@height, 0])
 
   @xAxis = d3.svg.axis()
     .scale(@xScale)
     .orient('bottom')
-    .ticks(@xTickNum)
+    #.ticks(@xTickNum)
+    .ticks(Session.get('xtick'))
     .tickSize(-@height)
 
   @yAxis = d3.svg.axis()
     .scale(@yScale)
     .orient("left")
-    .ticks(@yTickNum)
+    #.ticks(@yTickNum)
+    .ticks(Session.get('ytick'))
     .tickSize(-@width)
 
-  canvas.insert("g", ":first-child")
+  @canvas.insert("g", ":first-child")
     .attr("class", "x-axis")
     .style("fill", "none")
-    .attr("transform", "translate(0," + height + ")")
+    .attr("transform", "translate(0,#{height})")
     .call(@xAxis) #xAxis still from the Cat
   .selectAll('g')
     .attr('class', 'x')
   .selectAll("line")
     .style("stroke", "#ecf0f1")
 
-  canvas.insert("g", ":first-child")
+  @canvas.insert("g", ":first-child")
     .attr("class", "y-axis")
     .style("fill", "none")
+    .attr("transform", "translate(0,0)")
     .call(@yAxis) #yAxis is still from the Cat
   .selectAll('g')
     .attr('class', 'y')
@@ -68,17 +86,15 @@ pan_and_zoom = ->
   zoom = d3.behavior.zoom()
     .scaleExtent([0.1, 10])
     .on "zoom", (=>
-      #window.tx = d3.event.translate[0] + oldtx * d3.event.scale|| 0
-      #window.ty = d3.event.translate[1] + oldty * d3.event.scale|| 0
-      #window.s = olds * d3.event.scale || 1
       window.tx = d3.event.translate[0] + oldtx * d3.event.scale
       window.ty = d3.event.translate[1] + oldty * d3.event.scale
       window.s = olds * d3.event.scale
+
       xys = [tx, ty, s]
-      console.log "#{oldtx} x #{d3.event.scale} + #{d3.event.translate[0]} = #{tx}", ":: x"
-      console.log "#{oldty} x #{d3.event.scale} + #{d3.event.translate[1]} = #{ty}", ":: y"
-      console.log "#{olds} x #{d3.event.scale} = #{s}", ":: scale"
-      console.log "----------------"
+      #console.log "#{oldtx} x #{d3.event.scale} + #{d3.event.translate[0]} = #{tx}", ":: x"
+      #console.log "#{oldty} x #{d3.event.scale} + #{d3.event.translate[1]} = #{ty}", ":: y"
+      #console.log "#{olds} x #{d3.event.scale} = #{s}", ":: scale"
+      #console.log "----------------"
       #console.log xys
       redraw(xys)
     )
@@ -98,28 +114,39 @@ redraw = (xys) ->
   new_xTickNum = Math.round @width/(500*s)
   new_yTickNum = Math.round @height/(500*s)
 
+  Session.set 'xtick', new_xTickNum
+  Session.set 'ytick', new_yTickNum
+
+  console.log tx, @width, @height, ty, s, 'befour'
+  console.log (0-tx)/s, (@width-tx)/s, (@height-ty)/s, (0-ty)/s, 'four'
+
   #new scale
   @newerxScale = d3.scale.linear()
     .domain([(0-tx)/s, (@width-tx)/s])
+    #.domain([(0-tx)/s, (@width-tx)/s])
 
   @neweryScale = d3.scale.linear()
     .domain([(@height-ty)/s, (0-ty)/s])
+    #domain([(0-tx)/s, (@width-tx)/s])
 
+  Session.set 'newxscale', @newerxScale.ticks(new_xTickNum)
+  Session.set 'newyscale', @neweryScale.ticks(new_yTickNum)
+ 
   #translate the preview and playback svg
   d3.select(".svgavatars").attr("transform", "translate(#{tx}, #{ty})scale(#{s})")
 
   #pan and scale the ticks
   gx = @canvas.select('.x-axis').selectAll('g.x')
-    .data(@newerxScale.ticks(new_xTickNum))
-    .attr('transform', (d) => "translate(#{@xScale(d)*s+tx}, 0)")
+    .data(Session.get('newxscale'))
+    .attr('transform', (d) => "translate(#{d*s+tx}, 0)")
   gy = @canvas.select('.y-axis').selectAll('g.y')
-    .data(@neweryScale.ticks(new_yTickNum))
-    .attr('transform', (d) => "translate(0, #{@yScale(d)*s+ty})")
+    .data(Session.get('newyscale'))
+    .attr('transform', (d) => "translate(0, #{d*s+ty})")
 
   #update ticks
   gxe = gx.enter().insert('g')
     .attr("class", "x")
-    .attr('transform', (d) => "translate(#{@xScale(d)*s+tx}, 0)")
+    .attr('transform', (d) => "translate(#{d*s+tx}, 0)")
 
   gxe.append('line')
     .attr("stroke", '#ecf0f1')
@@ -130,7 +157,7 @@ redraw = (xys) ->
 
   gye = gy.enter().insert('g')
     .attr("class", "y")
-    .attr('transform', (d) => "translate(0, #{@yScale(d)*s+ty})")
+    .attr('transform', (d) => "translate(0, #{d*s+ty})")
 
   gye.append('line')
     .attr("stroke", '#ecf0f1')

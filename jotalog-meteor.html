@@ -4,13 +4,13 @@
 
 <body>
   {{> slider}}
-  {{> buttons}}
 </body>
 
 <template name="slider">
   <div id="menu">
     <a href="/">Home</a>
     <a href="{{browseListPath}}">Browse</a>
+    <a href="{{test1Path}}">Test</a>
     <a href="{{padviewPath}}">Pad</a>
     <a href="{{transitiontestPath}}">Transition</a>
   </div>
@@ -28,13 +28,6 @@
   {{#if this}}
       {{renderPage this}}
   {{/if}}  
-</template>
-
-<template name="buttons">
-  <form>
-    <input name="page"></input>
-    <button class="goto">Goto >></button>
-  </form>
 </template>
 
 <template name="hello">
