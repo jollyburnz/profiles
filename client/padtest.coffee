@@ -83,14 +83,18 @@ mousemove = (e) ->
 mouseup = ->
   console.log 'up'
   window.isDrawing = false
-  path_string = currentPath.attributes[4].value
+  console.log _points, "POINTS!!!!!"
+  #path_string = currentPath.attributes[4].value
+  path_string = Paths.p2path _points
   pathsss.push {path_string: path_string}
-  #console.log pathsss
+  d3.select(@).selectAll('.current-path')
+    .transition()
+    .duration(1000)
+    .attr('stroke-width', 0)
+    .remove()
+
   Session.set 'path', pathsss
-  #$('#svgtest #current-path').each(->
-  #  console.log @
-  #  )
-  #  
+ 
 Template.padtest.notdone = ->
   Session.equals "done", undefined
 
@@ -99,8 +103,26 @@ Template.padtest.rendered = ->
     .attr('width', 500)
     .attr('height', 500)
     .attr('id', 'svgtest')
+
+  preview = svgtest.append('g').attr('class', 'preview')
     
-    $('#svgtest')
-      .on('mousedown', mousedown)
-      .on('mousemove', mousemove)
-      .on('mouseup', mouseup)
+  $('#svgtest')
+    .on('mousedown', mousedown)
+    .on('mousemove', mousemove)
+    .on('mouseup', mouseup)
+
+  Meteor.autorun ->
+    data = Session.get 'path'
+    if data
+      
+      console.log data, 'portraits'
+      preview.selectAll('path').data(data)
+        .enter()
+        .append('path')
+          .attr('d', (d) -> d.path_string)
+          .attr('fill', 'none')
+          .attr('stroke', 'black')
+          .attr('stroke-width', 0)
+        .transition()
+        .duration(500)
+          .attr('stroke-width', 4)
