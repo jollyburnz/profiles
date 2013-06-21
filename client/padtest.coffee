@@ -89,7 +89,7 @@ mouseup = ->
   pathsss.push {path_string: path_string}
   d3.select(@).selectAll('.current-path')
     .transition()
-    .duration(1000)
+    .duration(500)
     .attr('stroke-width', 0)
     .remove()
 
@@ -114,7 +114,7 @@ Template.padtest.rendered = ->
   Meteor.autorun ->
     data = Session.get 'path'
     if data
-      
+
       console.log data, 'portraits'
       preview.selectAll('path').data(data)
         .enter()
@@ -124,5 +124,5 @@ Template.padtest.rendered = ->
           .attr('stroke', 'black')
           .attr('stroke-width', 0)
         .transition()
-        .duration(500)
+        .duration(200)
           .attr('stroke-width', 4)

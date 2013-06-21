@@ -21,6 +21,8 @@ Template.email.events
     	avatar: Session.get 'path'
 
     Session.set "done", true
+    #go to padview
+    Meteor.Router.to 'padview' 
 
 Template.email.done = ->
   Session.equals "done", true
