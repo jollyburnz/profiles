@@ -75,9 +75,6 @@ renderAxes = (canvas) ->
 pan_and_zoom = ->
   console.log @canvas
   console.log 'zoom test'
-  #oldtx = window.tx
-  #oldty = window.ty
-  #olds = window.s
   
   oldtx = Session.get 'tx'
   oldty = Session.get 'ty'
@@ -212,11 +209,19 @@ rendersvg = ->
     .attr('height', $(document).height())
   @group = @canvas.append('g').attr('class', 'svgavatars')
     .attr('transform', "translate(#{Session.get('tx')},#{Session.get('ty')}) scale(#{Session.get('s')})")
-  
+
   renderAxes(@canvas)
   rendersvgPaths(@group)
+
   pan_and_zoom()
 
+  #highlight the last new portrait
+  d3.select(@group.selectAll('g')[0].pop()).selectAll('path')
+    .attr('stroke', 'red')
+
 Template.pad.rendered = ->
-  console.log 'this should render'
+  Session.set 'step', 5
   rendersvg()
+
+Template.pad.count = ->
+  Emails.find().count()

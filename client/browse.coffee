@@ -16,5 +16,6 @@ Template.path.rendered = ->
 		.attr('stroke-width', 4)
 
 Template.browseList.rendered = ->
+	Session.set 'step', 3
 	console.log $(@), 'browser'
 	$(@).addClass 'pt-page-current'

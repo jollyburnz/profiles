@@ -99,6 +99,7 @@ Template.padtest.notdone = ->
   Session.equals "done", undefined
 
 Template.padtest.rendered = ->
+  Session.set 'step', 1
   svgtest = d3.select('#test').append('svg')
     .attr('width', 500)
     .attr('height', 500)

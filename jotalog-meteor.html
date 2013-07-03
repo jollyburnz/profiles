@@ -4,14 +4,15 @@
 
 <body>
   {{> slider}}
+  {{> bottom}}
 </body>
 
 <template name="slider">
   <div id="menu">
     <a href="/">Home</a>
+    <a href="{{padviewPath}}">Pad</a>
     <a href="{{browseListPath}}">Browse</a>
     <a href="{{test1Path}}">Test</a>
-    <a href="{{padviewPath}}">Pad</a>
     <a href="{{transitiontestPath}}">Transition</a>
   </div>
   <div id="pt-main" class="pt-perspective">
@@ -24,14 +25,21 @@
   </div>
 </template>
 
+<template name="bottom">
+  <div id="bottom">
+    <ul class="bottom-slide">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+    </ul>
+    {{step}}
+  </div>
+</template>
+
 <template name="onePage">
   {{#if this}}
       {{renderPage this}}
   {{/if}}  
-</template>
-
-<template name="hello">
-  <h1>Hello World!</h1>
-  {{greeting}}
-  <input type="button" value="Click" />
 </template>

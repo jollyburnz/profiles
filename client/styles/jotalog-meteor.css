@@ -4,6 +4,27 @@ body{
   padding: 0;
 }
 
+#bottom{
+  width: 100%;
+  height: 75px;
+  background: #ccdd22;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+#bottom .bottom-slide li{
+  list-style: none;
+  display: inline-block;
+  font-size: 36px;
+  padding: 0 10px;
+  line-height: 48px;
+}
+
+#bottom .bottom-slide .active{
+  color: #fff;
+}
+
 #home, #browse, #pad, #transition, #test1{
   width: 100%;
   height: 100%;
@@ -26,14 +47,6 @@ body{
   background: #cc2200;
 }
 
-/*
-.current-path{
-	fill: none;
-	stroke: black;
-	stroke-width: 3;
-}
-*/
-
 #svgtest2{
 	position: absolute;
 	top: 100px;
@@ -53,6 +66,14 @@ body{
 
 #padddd{
   background: #ffffff;
+}
+
+.user_count{
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  padding: 15px;
 }
 
 .to_padview .next{
@@ -114,13 +135,23 @@ body{
 */
 
 /* transitions to browseList */
-.to_homepage .current, .to_browseList .current, .to_test1 .current{
+.to_homepage .current,
+.to_browseList .current,
+.to_test1 .current,
+.to_step2 .current,
+.to_step3 .current,
+.to_step4 .current{
   -webkit-animation: moveToLeft .6s ease both;
   -moz-animation: moveToLeft .6s ease both;
   animation: moveToLeft .6s ease both;
 }
 
-.to_homepage .next, .to_browseList .next, .to_test1 .next{
+.to_homepage .next,
+.to_browseList .next,
+.to_test1 .next,
+.to_step2 .next,
+.to_step3 .next,
+.to_step4 .next{
   -webkit-animation: moveFromRight .6s ease both;
   -moz-animation: moveFromRight .6s ease both;
   animation: moveFromRight .6s ease both;
