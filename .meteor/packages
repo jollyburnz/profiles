@@ -9,6 +9,6 @@ coffeescript
 d3
 email
 router
-jquery
 transitioner
 underscore
+bootstrap
