@@ -137,6 +137,7 @@ body{
 /* transitions to browseList */
 .to_homepage .current,
 .to_browseList .current,
+.to_flat .current,
 .to_test1 .current,
 .to_step2 .current,
 .to_step3 .current,
@@ -148,6 +149,7 @@ body{
 
 .to_homepage .next,
 .to_browseList .next,
+.to_flat .next,
 .to_test1 .next,
 .to_step2 .next,
 .to_step3 .next,
