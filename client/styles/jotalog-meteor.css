@@ -4,6 +4,20 @@ body{
   padding: 0;
 }
 
+#home p{
+  //font-weight: bold;
+  text-transform: uppercase;
+  //text-align: justify;
+}
+
+.char1, .char2, .char3, .char4, .char5, .char6, .char7{
+  font-size: 72px;
+}
+
+.char3{
+  left: 200px;
+}
+
 #bottom{
   width: 100%;
   height: 75px;
@@ -16,7 +30,7 @@ body{
 #bottom .bottom-slide li{
   list-style: none;
   display: inline-block;
-  font-size: 36px;
+  //font-size: 36px;
   padding: 0 10px;
   line-height: 48px;
 }
@@ -33,6 +47,7 @@ body{
 #home{
   background: #9b59b6;
   color: #fff;
+  padding-bottom: 100px;
 }
 
 #browse{

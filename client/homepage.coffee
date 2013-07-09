@@ -7,6 +7,23 @@ Template.slider.helpers
 	  console.log Meteor.Transitioner.nextPage(), 'next'
 	  Meteor.Transitioner.nextPage()
 
+Template.homepage.rendered = ->
+	console.log 'jotalog'
+	#$('#jotalog').fitText()
+
+	#$('#jotalog').bigtext
+	#	childSelector: "> p"
+	#
+
+	$('p').slabText
+		fontRatio: 1
+		precision: 3
+		postTweak: true
+		viewportBreakpoint: 380
+	
+	$('.fancy_title').fitText(1)
+
+	#$(".fancy_title").lettering()
 Template.bottom.step = ->
 	Session.get 'step'
 
@@ -21,7 +38,6 @@ Template.bottom.rendered = ->
 
 Template.test1.rendered = ->
 	Session.set 'step', 4
-
 
 Template.step2.rendered = ->
 	Session.set 'step', 2
@@ -122,5 +138,5 @@ Template.flat.rendered = ->
 	    
 	    # Switch
 	    $("[data-toggle='switch']").wrap("<div class=\"switch\" />").parent().bootstrapSwitch()
-
+	    #console.log $("[data-toggle='switch']").wrap("<div class=\"switch\" />").parent().bootstrapSwitch(), 'asdfasdf'
 	) jQuery

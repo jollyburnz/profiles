@@ -1,29 +1,53 @@
 <template name="homepage">
 	<div id="home">
-	{{> padtest}}
-	{{> portrait}}
-	{{> email}}
-	</div>
+    <div class="container">
+      <div class='row'>
+      	{{> padtest}}
+      	{{> portrait}}
+      	{{ email}}
+      </div>
+    </div>
+  </div>
 </template>
 
 <template name="padtest">
 	{{#if notdone}}
-    <a href="{{step2Path}}">Next Step</a>
-		<div id="test"></div>
-		<canvas id="canvastest" width="500px" height="500px" style='display:none'></canvas>
-    <h1>Create real-time lectures.  Build a following. Tutor the world. The lightweight lecture-building platform and marketplace that works on your tablet</h1>
-    <h2>Create. Share. Earn. Jot.</h2>
-    <h3>Start jotting your profile and be one of the first beta jotters</h3>
-
-    <br/>
-
-    <h2>What do you look like?</h2>
+    <div class="span5">
+      <h1 class="fancy_title">Jotalog</h1>
+      <img src='images/jotalog-logo2.png'/>
+      <img src='images/jotalog-logo3.png'/>
+      <img src='images/jotalog-logo4.png'/>
+      <img src='images/jotalog-logo5.png'/>
+      <img src='images/jotalog-logo6.png'/>
+      <img src='images/jotalog-logo7.png'/>
+      <hr/>
+      <p>Create RT lectures.</p>
+      <p>Build a following.</p>
+      <p>Tutor the world.</p>
+      <hr/>
+      <p>The lightweight lecture-building platform and marketplace that works on your tablet</p>
+      <hr/>
+      <p>Create. Share. Earn. Jot.</p>
+    </div>
+    <div class="span6 offset1">
+      <a id='next' class="btn btn-large btn-block disabled" href="{{step2Path}}">Next Step<span class="fui-arrow-right"></span></a>
+      <div id="test"></div>
+      <canvas id="canvastest" width="500px" height="500px" style='display:none'></canvas>
+      <br/>
+      <br/>
+      <p>Start jotting your profile and be one of the first beta jotters</p>
+      <p>What do you look like?</p>
       <span class='ss-icon' style="font-size: 3em;">
          <a href='#'>Play</a>
          <a href='#'>microphone</a>
          <a href='#'>micdisabled</a>
          <a href='#'>gem</a>
       </span>
+    </div>
+    <div class='span3'>
+      <a class="btn btn-large btn-block disabled" href="{{step2Path}}">Next Step<span class="fui-arrow-right"></span></a>
+      <a class="btn btn-large btn-block btn-primary" href="{{step2Path}}">Next Step<span class="fui-arrow-right"></span></a>
+    </div>
     <br/>
 	{{/if}}
 </template>

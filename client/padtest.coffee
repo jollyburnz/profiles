@@ -56,8 +56,9 @@ smooth = (points) ->
     i--
 
 onPointerMove = (event) ->
-  x = event.pageX
-  y = event.pageY
+  console.log event, 'events~!'
+  x = event.offsetX
+  y = event.offsetY
   distance = distanceBetween(prevX, x, prevY, y)
   return  if distance < minDistance
   smooth _points
@@ -69,11 +70,12 @@ onPointerMove = (event) ->
 
 mousedown = (e) ->
   console.log 'down', e
+  Session.set 'nextstep', true
   e.preventDefault()
   _points.length = 0
-  _points.push [e.pageX, e.pageY]
+  _points.push [e.offsetX, e.offsetY]
   window.isDrawing = true
-  startPath document.querySelector('#svgtest'), e.pageX, e.pageY
+  startPath document.querySelector('#svgtest'), e.offsetX, e.offsetY
 
 mousemove = (e) ->
   if isDrawing
@@ -113,6 +115,9 @@ Template.padtest.rendered = ->
     .on('mouseup', mouseup)
 
   Meteor.autorun ->
+    if Session.get 'nextstep'
+      console.log 'NEXT!!!!!!'
+      $('#next').addClass('btn-primary').removeClass('disabled')
     data = Session.get 'path'
     if data
 
