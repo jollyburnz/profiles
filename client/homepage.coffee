@@ -14,27 +14,54 @@ Template.homepage.rendered = ->
 	#$('#jotalog').bigtext
 	#	childSelector: "> p"
 	#
+	$('.copy').slabText
+		fontRatio: 0.7
+		precision: 3
+		postTweak: true
 
-	$('p').slabText
-		fontRatio: 1
+	$('.blurb').slabText
+		fontRatio: 2
+		precision: 3
+		postTweak: true
+
+	$('.slogan').slabText
+		fontRatio: 0.78
 		precision: 3
 		postTweak: true
 		viewportBreakpoint: 380
-	
+
+	$('.instruction').slabText
+		fontRatio: 1.9
+		precision: 3
+		postTweak: true
+		viewportBreakpoint: 380
+
+
 	$('.fancy_title').fitText(1)
 
 	#$(".fancy_title").lettering()
+
+	$('.pad').waypoint('sticky',
+		offset: '60px'
+	)
+	
+	$('.pad').on 'mousedown', ->
+		$(@).find('.instruction').fadeOut()
+
 Template.bottom.step = ->
 	Session.get 'step'
 
 Template.bottom.rendered = ->
-	console.log 'bottom'
-	$('.bottom-slide').find('li').each ->
-		console.log $(@).text()
-		console.log Session.get 'step'
-		if Session.get('step').toString() == $(@).text().toString()
-			console.log 'dope'
-			$(@).addClass 'active'
+	Meteor.autorun ->
+		console.log 'bottom'
+		$('.bottom-slide').find('li').each ->
+			console.log $(@).text()
+			console.log Session.get 'step'
+			if Session.get('step').toString() == $(@).text().toString()
+				console.log 'dope'
+				$(@).addClass 'active'
+			else
+				$(@).removeClass 'active'
 
 Template.test1.rendered = ->
 	Session.set 'step', 4

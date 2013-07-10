@@ -4,7 +4,11 @@ body{
   padding: 0;
 }
 
-#home p{
+#pt-main{
+  //margin-top: 75px;
+}
+
+#home li.copy{
   //font-weight: bold;
   text-transform: uppercase;
   //text-align: justify;
@@ -18,10 +22,71 @@ body{
   left: 200px;
 }
 
+.stuck{
+  position: fixed;
+  top: 40px;
+}
+
+#padtest{
+  //margin-top: 20px;
+  //position: fixed;
+  //top: 0;
+}
+
+#pad-container{
+  position: relative;
+  width: 500px;
+  height: 500px;
+}
+
+#pad-container .instruction{
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 280px;
+  height: 240px;
+  padding: 130px 110px;
+  background: #000;
+  opacity: 0.5;
+}
+
+#pad-container .instruction:hover{
+  opacity: 0.7;
+}
+
+.instruction{
+  text-transform: uppercase;
+}
+
+dl{
+  position: relative;
+}
+
+dt{
+  font-size: 2.5em;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin-top: -12px;
+}
+
+dd{
+  padding-left: 40px;
+  text-transform: uppercase;
+  width: 85%;
+}
+
+li.copy{
+  list-style: none;
+}
+
+
+
 #bottom{
   width: 100%;
   height: 75px;
-  background: #ccdd22;
+  background: #34495e;
   position: fixed;
   bottom: 0;
   left: 0;

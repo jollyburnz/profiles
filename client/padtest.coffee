@@ -70,7 +70,6 @@ onPointerMove = (event) ->
 
 mousedown = (e) ->
   console.log 'down', e
-  Session.set 'nextstep', true
   e.preventDefault()
   _points.length = 0
   _points.push [e.offsetX, e.offsetY]
@@ -84,6 +83,8 @@ mousemove = (e) ->
 
 mouseup = ->
   console.log 'up'
+  Session.set 'nextstep', true
+
   window.isDrawing = false
   console.log _points, "POINTS!!!!!"
   #path_string = currentPath.attributes[4].value
