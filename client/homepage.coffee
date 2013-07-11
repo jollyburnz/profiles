@@ -42,7 +42,7 @@ Template.homepage.rendered = ->
 	#$(".fancy_title").lettering()
 
 	$('.pad').waypoint('sticky',
-		offset: '60px'
+		offset: '40px'
 	)
 	
 	$('.pad').on 'mousedown', ->
