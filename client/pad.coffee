@@ -195,7 +195,9 @@ rendersvgPaths = (group) ->
             .transition()
             .duration(300)
             .attr('stroke', 'black')    
-        .selectAll('path').data((d) -> d.avatar)
+        .selectAll('path').data((d) -> 
+          console.log d, 'data'
+          d.avatar)
         .enter()
           .append('path')
             .attr('d', (d)-> d.path_string)

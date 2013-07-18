@@ -1,18 +1,25 @@
 <template name="homepage">
 	<div id="home">
     <div class="container">
-      <div class='row'>
-      	{{> padtest}}
-      	{{> portrait}}
-      	{{ email}}
-      </div>
+      {{> padtest}}
+      {{ portrait}}
+      {{ email}}
     </div>
   </div>
 </template>
 
 <template name="padtest">
 	{{#if notdone}}
-    <div class="span5">
+
+  <div class='row'>
+    <div class='span12'>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+       <img class='centerHorizontal' src='images/jotalog-logo-triangles2.png'/>
+    </div>
+    <div class="span6 offset3">
       <!--<h1 class="fancy_title">Jotalog</h1>
       <img src='images/jotalog-logo2.png'/>
       <img src='images/jotalog-logo3.png'/>
@@ -23,49 +30,62 @@
       <br/>
       <!--<img src='images/jotalog-logo8.png'/>
       <hr/>-->
-      <p class='blurb tk-gooddog-new' style="text-transform: uppercase; padding: 20px">The lightweight lecture-building platform and marketplace that works on your tablet</p>
-      
-      <hr/>
+      <div class='blurb tk-gooddog-new' style="text-transform: uppercase; padding: 180px 20px 0px">The lightweight lecture-building platform and marketplace that works on your</div>
+      <div class="tlt tk-gooddog-new">
+          <ul class="texts">
+              <li>Tablet</li>
+              <li>Mobile</li>
+              <li>Desktop</li>
+          </ul>
+      </div>
 
-      <dl>
-        <dt><i class="ss-icon">clock</i></dt>
-        <dd class='copy tk-gooddog-new'>Create realtime lectures.</dd>
-      </dl>
+    </div>
+  </div>
 
-      <dl>
-        <dt><i class="ss-icon">glowingstar</i></dt>
-        <dd class='copy tk-gooddog-new'>Build a following.</dd>
-      </dl>
+  <div id='bullets' class='row'>
+    <div class="span6 offset3">
+      <div id='padtest'>
+        <dl>
+          <dt><i class="ss-icon">clock</i></dt>
+          <dd class='copy tk-gooddog-new'>Create realtime lectures.</dd>
+        </dl>
 
-      <dl>
-        <dt><i class="ss-icon">earth</i></dt>
-        <dd class='copy tk-gooddog-new'>Tutor the world.</dd>
-      </dl>
-      <hr/>
+        <dl>
+          <dt><i class="ss-icon">glowingstar</i></dt>
+          <dd class='copy tk-gooddog-new'>Build a following.</dd>
+        </dl>
+
+        <dl>
+          <dt><i class="ss-icon">earth</i></dt>
+          <dd class='copy tk-gooddog-new'>Tutor the world.</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+
+  <div id="start-jotting" class='row'>
+    <div class="span6 offset3">
       <p class='instruction tk-gooddog-new'>Start jotting your profile and be one of the first beta jotters.</p>
       <hr/>
       <p class='slogan tk-gooddog-new'>Create. Share. Earn. Jot.</p>
-      <hr/>
-      <p class='copy tk-gooddog-new'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur. Donec ut libero sed arcu vehicula ultricies a non tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut gravida lorem. Ut turpis felis, pulvinar a semper sed, adipiscing id dolor. Pellentesque auctor nisi id magna consequat sagittis. Curabitur dapibus enim sit amet elit pharetra tincidunt feugiat nisl imperdiet. Ut convallis libero in urna ultrices accumsan. Donec sed odio eros. Donec viverra mi quis quam pulvinar at malesuada arcu rhoncus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In rutrum accumsan ultricies. Mauris vitae nisi at sem facilisis semper ac in est.</p>
     </div>
-    <div class="span6 offset1">
-      <div id='padtest'>
+  </div>
+
+  <div id="pad" class="row">
+    <div class="span6 offset3">
         <br/><br/>
-        <p class='copy tk-gooddog-new'>What do you look like?</p>
         <br/>
         <div id='pad-container'>
           <div class='pad'>
-          <p class='instruction tk-gooddog-new'>Start jotting your profile and be one of the first beta jotters.</p>
-          <div id="test"></div>
-          <br/>
-          <a id='next' class="btn btn-large btn-block disabled" href="{{step2Path}}">Next Step<span class="fui-arrow-right"></span></a>
+            <p class='question tk-gooddog-new'>What do you look like?</p>
+            <div id="test"></div>
           </div>
         </div>
         <canvas id="canvastest" width="500px" height="500px" style='display:none'></canvas>
         <br/>
         <br/>
-      </div>
     </div>
+  </div>
 	{{/if}}
 </template>
 
