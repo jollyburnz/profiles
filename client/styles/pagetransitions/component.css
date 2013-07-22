@@ -18,6 +18,7 @@ html, body { height: 100%; }
 	/*
 	visibility: hidden;
 	overflow: hidden;
+	*/
 	-webkit-backface-visibility: hidden;
 	-moz-backface-visibility: hidden;
 	backface-visibility: hidden;
@@ -27,7 +28,7 @@ html, body { height: 100%; }
 	-webkit-transform-style: preserve-3d;
 	-moz-transform-style: preserve-3d;
 	transform-style: preserve-3d;
-	*/
+	
 }
 
 .pt-page-current,

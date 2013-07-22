@@ -78,7 +78,7 @@ Template.homepage.rendered = ->
     $('.pad').on 'mousedown', ->
       $(@).find('.question').fadeOut()
 
-    setTimeout(slabText, 1)
+    setTimeout(slabText, 10)
 
     Scrollorama()
 
