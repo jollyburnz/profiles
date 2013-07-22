@@ -56,32 +56,31 @@ slabText = ->
     resizeThrottleTime: 0
 
 Template.homepage.rendered = ->
-  Session.set 'step', 1
-  Session.set 'next_step', '/step2'
+  if Session.equals 'step', 1
+    console.log 'DOPEE!!!!!!'
+    console.log 'jotalog'
+    #$(".fancy_title").lettering()
 
-  console.log 'jotalog'
-  #$(".fancy_title").lettering()
+    #$('.pad').waypoint('sticky',
+    #  offset: '40px'
+    #)
+    $('.tlt').textillate
+      loop: true
+      in:
+        effect: "tada"
+        sync: false
+        shuffle: true
+      out:
+        effect: "bounceOut"
+        sync: false
+        shuffle: true
+    
+    $('.pad').on 'mousedown', ->
+      $(@).find('.question').fadeOut()
 
-  #$('.pad').waypoint('sticky',
-  #  offset: '40px'
-  #)
-  $('.tlt').textillate
-    loop: true
-    in:
-      effect: "tada"
-      sync: false
-      shuffle: true
-    out:
-      effect: "bounceOut"
-      sync: false
-      shuffle: true
-  
-  $('.pad').on 'mousedown', ->
-    $(@).find('.question').fadeOut()
+    setTimeout(slabText, 1)
 
-  setTimeout(slabText, 1)
-
-  Scrollorama()
+    Scrollorama()
 
 Template.bottom.rendered = ->
   Meteor.autorun ->
@@ -104,21 +103,6 @@ Template.bottom.rendered = ->
        $('#next').removeClass('btn-primary')
         .addClass('disabled')
         .removeAttr('href')
-
-Template.step2.rendered = ->
-  Session.set 'nextstep', false
-  Session.set 'step', 2
-  Session.set 'next_step', '/step3'
-
-Template.step3.rendered = ->
-  Session.set 'nextstep', false
-  Session.set 'step', 3
-  Session.set 'next_step', '/step4'
-
-Template.step4.rendered = ->
-  Session.set 'nextstep', false
-  Session.set 'step', 4
-  Session.set 'next_step', '/step5'
 
 Template.step4.events 
   "click #btn": ->  
