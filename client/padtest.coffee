@@ -115,9 +115,6 @@ Template.padtest.rendered = ->
     .on('mouseup', mouseup)
 
   Meteor.autorun ->
-    if Session.get 'nextstep'
-      console.log 'NEXT!!!!!!'
-      $('#next').addClass('btn-primary').removeClass('disabled')
     data = Session.get 'path'
     if data
 

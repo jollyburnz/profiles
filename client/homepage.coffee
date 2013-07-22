@@ -56,8 +56,8 @@ slabText = ->
     resizeThrottleTime: 0
 
 Template.homepage.rendered = ->
-
   Session.set 'step', 1
+  Session.set 'next_step', '/step2'
 
   console.log 'jotalog'
   #$(".fancy_title").lettering()
@@ -83,19 +83,6 @@ Template.homepage.rendered = ->
 
   Scrollorama()
 
-Template.bottom.next_step = ->
-  next_step = Session.get('step').toString() if Session.get('step')
-  console.log next_step, 'step'
-
-  if next_step is '1'
-    '/step2'
-  else if next_step is '2'
-    '/step3'
-  else if next_step is '3'
-    '/step4'
-  else if next_step is '4'
-    '/step5'
-
 Template.bottom.rendered = ->
   Meteor.autorun ->
     console.log 'bottom'
@@ -108,14 +95,30 @@ Template.bottom.rendered = ->
       else
         $(@).removeClass 'active'
 
+    if Session.get 'nextstep'
+      console.log 'NEXT!!!!!!'
+      $('#next').addClass('btn-primary')
+        .removeClass('disabled')
+        .attr('href', Session.get('next_step'))
+    else
+       $('#next').removeClass('btn-primary')
+        .addClass('disabled')
+        .removeAttr('href')
+
 Template.step2.rendered = ->
+  Session.set 'nextstep', false
   Session.set 'step', 2
+  Session.set 'next_step', '/step3'
 
 Template.step3.rendered = ->
+  Session.set 'nextstep', false
   Session.set 'step', 3
+  Session.set 'next_step', '/step4'
 
 Template.step4.rendered = ->
+  Session.set 'nextstep', false
   Session.set 'step', 4
+  Session.set 'next_step', '/step5'
 
 Template.step4.events 
   "click #btn": ->  
