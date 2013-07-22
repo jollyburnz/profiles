@@ -8,78 +8,63 @@ Template.slider.helpers
     Meteor.Transitioner.nextPage()
 
 Scrollorama = ->
-  controller = $.superscrollorama(
+  controller = $.superscrollorama
     triggerAtCenter: false
     playoutAnimations: true
-  )
-  console.log controller
 
-  controller.addTween "#bullets", TweenMax.from($("#bullets"), .5,
-    css:
-      opacity: 0
-  # scroll duration of tween (0 means autoplay)
-  ), 0, -400 # offset the start of the tween by -400 pixels
+  controller.addTween "#bullets"
+    , TweenMax.from($("#bullets"), .5, {css: {opacity: 0}})
+    , 0 # scroll duration of tween (0 means autoplay)
+    , -400 # offset the start of the tween by -400 pixels
 
-  controller.addTween "#start-jotting", TweenMax.from($("#start-jotting"), .5,
-    css:
-      opacity: 0
-  # scroll duration of tween (0 means autoplay)
-  ), 0, -400 # offset the start of the tween by -400 pixels
+  controller.addTween "#start-jotting", 
+    (new TimelineLite()).append([
+      TweenMax.from($("#start-jotting"), .5, {css: {opacity: 0}}), 
+      TweenMax.to($("#bottom"), .5, {css: {bottom: 0}})
+    ])
+    , 0
+    , -400 # offset the start of the tween by -400 pixels
 
-  controller.addTween "#start-jotting", TweenMax.to($("#bottom"), .4,
-    css:
-      bottom: 0
-  # scroll duration of tween (0 means autoplay)
-  ), 0, -400 # offset the start of the tween by -400 pixels
+  controller.addTween "#pad"
+    , TweenMax.from($("#pad"), .5, {css: {opacity: 0}})
+    , 0 # scroll duration of tween (0 means autoplay)
+    , -400 # offset the start of the tween by -400 pixels
 
-  controller.addTween "#pad", TweenMax.to($("#pad"), .4,
-    css:
-      bottom: 0
-  # scroll duration of tween (0 means autoplay)
-  ), 0, -400 # offset the start of the tween by -400 pixels
-
-Template.homepage.rendered = ->
-  Session.set 'step', 1
-
-  console.log 'jotalog'
-
+slabText = ->
+  console.log 'slabtext'
   $('.copy').slabText
     fontRatio: 0.7
-    precision: 3
-    postTweak: true
+    resizeThrottleTime: 0
 
   $('.blurb').slabText
     fontRatio: 1.5
-    precision: 3
-    postTweak: true
+    resizeThrottleTime: 0
 
   $('.slogan').slabText
     fontRatio: 0.78
-    precision: 3
-    postTweak: true
     viewportBreakpoint: 380
+    resizeThrottleTime: 0
 
   $('.instruction').slabText
-    fontRatio: 1.9
-    precision: 3
-    postTweak: true
+    fontRatio: 1.5
     viewportBreakpoint: 380
+    resizeThrottleTime: 0
 
   $('.question').slabText
     fontRatio: 2.5
-    precision: 3
-    postTweak: true
     viewportBreakpoint: 380
+    resizeThrottleTime: 0
 
+Template.homepage.rendered = ->
 
-  $('.fancy_title').fitText(4)
+  Session.set 'step', 1
 
+  console.log 'jotalog'
   #$(".fancy_title").lettering()
 
-  $('.pad').waypoint('sticky',
-    offset: '40px'
-  )
-  $('.tlt').fitText(1)
+  #$('.pad').waypoint('sticky',
+  #  offset: '40px'
+  #)
   $('.tlt').textillate
     loop: true
     in:
@@ -93,6 +78,8 @@ Template.homepage.rendered = ->
   
   $('.pad').on 'mousedown', ->
     $(@).find('.question').fadeOut()
+
+  setTimeout(slabText, 1)
 
   Scrollorama()
 
