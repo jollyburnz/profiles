@@ -78,7 +78,7 @@ Template.homepage.rendered = ->
     $('.pad').on 'mousedown', ->
       $(@).find('.question').fadeOut()
 
-    setTimeout(slabText, 10)
+    setTimeout(slabText, 100)
 
     Scrollorama()
 
@@ -104,6 +104,21 @@ Template.bottom.rendered = ->
         .addClass('disabled')
         .removeAttr('href')
 
+Template.step3.events
+  'blur #share': ->
+    console.log 'blur for share'
+    console.log $('#share').val()
+    Session.set 's3share', $('#share').val()
+  'blur #learn': ->
+    console.log 'blur for learn'
+    console.log $('#learn').val()
+    Session.set 's3learn', $('#learn').val()
+
+Template.step3.rendered = ->
+  Meteor.autorun ->
+    if Session.get('s3learn')? and Session.get('s3share')?
+      Session.set 'nextstep', true
+
 Template.step4.events 
   "click #btn": ->  
     #Commented out to not send out email thru mailgun
@@ -112,6 +127,8 @@ Template.step4.events
     Emails.insert 
       email: $("#email").val()
       avatar: Session.get 'path'
+      share: Session.get 's3share'
+      learn: Session.get 's3learn'
 
     #go to your avatar lot on the infinite canvas
     max_row = Math.ceil Math.sqrt(Emails.find().count())

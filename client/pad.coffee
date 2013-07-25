@@ -184,8 +184,8 @@ rendersvgPaths = (group) ->
         .attr('transform', (d, i) ->
           "translate(#{i%max_row*width}, #{Math.floor(i/max_row)*width})"
         )
-        .on 'mouseover', ->
-          console.log 'over', @
+        .on 'mouseover', (d) ->
+          console.log 'over', @, d
           d3.select(@).selectAll('path')
             .transition()
             .duration(300)
