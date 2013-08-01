@@ -33,7 +33,7 @@ Scrollorama = ->
 slabText = ->
   console.log 'slabtext'
   $('.copy').slabText
-    fontRatio: 0.7
+    fontRatio: 1
     resizeThrottleTime: 0
 
   $('.blurb').slabText
@@ -104,20 +104,6 @@ Template.bottom.rendered = ->
         .addClass('disabled')
         .removeAttr('href')
 
-Template.step3.events
-  'blur #share': ->
-    console.log 'blur for share'
-    console.log $('#share').val()
-    Session.set 's3share', $('#share').val()
-  'blur #learn': ->
-    console.log 'blur for learn'
-    console.log $('#learn').val()
-    Session.set 's3learn', $('#learn').val()
-
-Template.step3.rendered = ->
-  Meteor.autorun ->
-    if Session.get('s3learn')? and Session.get('s3share')?
-      Session.set 'nextstep', true
 
 Template.step4.events 
   "click #btn": ->  

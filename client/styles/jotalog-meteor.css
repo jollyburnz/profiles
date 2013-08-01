@@ -1,8 +1,86 @@
 /* CSS declarations go here */
+
 body{
   margin: 0;
   padding: 0;
-  font-family: "gooddog-new";
+  font-family: "gooddog-new", serif !important;
+}
+
+h1, h2, h3, h4, h5, p{
+  font-family: "gooddog-new", serif !important;
+}
+
+input[type=color],
+input[type=date],
+input[type=datetime],
+input[type=datetime-local],
+input[type=email],
+input[type=file],
+input[type=month],
+input[type=number],
+input[type=password],
+input[type=range],
+input[type=search],
+input[type=tel],
+input[type=time],
+input[type=text],
+input[type=url],
+input[type=week],
+textarea {
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    //border-bottom: 1px solid #000 !important;
+    color: #333;
+    //font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 32px;
+    outline: 0;
+    padding: 8px 0;
+    margin-bottom: 20px;
+    resize: none;
+    height: 48px;
+}
+
+.input-container{
+  position: relative;
+}
+
+.input-ph{
+  display: inline-block;
+  width: auto;
+  height: auto;
+  min-width: 16px;
+  padding: 4px 5px;
+  font-size: 48px;
+  font-weight: normal;
+  line-height: 48px;
+  text-align: center;
+  text-shadow: 0 1px 0 #ffffff;
+  //background-color: #eeeeee;
+  color: #000;
+  position:absolute;
+  left:3px;
+  top:3px;
+  bottom:3px;
+  z-index:3;
+}
+
+.input-container input[type=text]{
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    //border-bottom: 1px solid #000 !important;
+    border-bottom: 1px solid #000;
+    color: #333;
+    font-size: 32px;
+    outline: 0;
+    padding: 8px 0;
+    margin-bottom: 20px;
+    margin-left: 60px;
+    resize: none;
+    height: 48px;
+    width: 400px;
+    font-family: "gooddog-new", serif;
 }
 
 #pt-main{
@@ -61,8 +139,7 @@ body{
   z-index: 2;
   width: 280px;
   height: 240px;
-  padding: 130px 110px;
-  background: #000;
+  margin: 130px 110px;
   opacity: 0.5;
 }
 
@@ -83,17 +160,23 @@ dt{
   position: absolute;
   top: 50%;
   left: 0;
-  margin-top: -12px;
+  margin-top: -25px;
 }
 
 dd{
-  padding-left: 40px;
+  padding-left: 60px;
   text-transform: uppercase;
-  width: 85%;
+  width: 100%;
 }
 
 li.copy{
   list-style: none;
+}
+
+/* Step 3 */
+
+.blurb3-1, .blurb3-2, .question-1-container, .question-2-container{
+  padding: 120px 0;
 }
 
 
@@ -123,6 +206,9 @@ li.copy{
 
 #bottom #next{
   margin-top: 15px;
+  float: left;
+  width: 200px;
+  text-align: center;
 }
 
 #bottom .bottom-slide .active{
