@@ -7,11 +7,7 @@ Template.slider.helpers
     console.log Meteor.Transitioner.nextPage(), 'next'
     Meteor.Transitioner.nextPage()
 
-Scrollorama = ->
-  controller = $.superscrollorama
-    triggerAtCenter: false
-    playoutAnimations: true
-
+Scrollorama1 = ->
   controller.addTween "#bullets"
     , TweenMax.from($("#bullets"), .5, {css: {opacity: 0}})
     , 0 # scroll duration of tween (0 means autoplay)
@@ -80,7 +76,7 @@ Template.homepage.rendered = ->
 
     setTimeout(slabText, 100)
 
-    Scrollorama()
+    Scrollorama1()
 
 Template.bottom.rendered = ->
   Meteor.autorun ->

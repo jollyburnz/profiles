@@ -8,6 +8,7 @@ body{
 
 h1, h2, h3, h4, h5, p{
   font-family: "gooddog-new", serif !important;
+  color: #fff !important;
 }
 
 input[type=color],
@@ -55,9 +56,9 @@ textarea {
   font-weight: normal;
   line-height: 48px;
   text-align: center;
-  text-shadow: 0 1px 0 #ffffff;
+  //text-shadow: 0 1px 0 #ffffff;
   //background-color: #eeeeee;
-  color: #000;
+  color: #fff;
   position:absolute;
   left:3px;
   top:3px;
@@ -69,9 +70,8 @@ textarea {
     background-color: transparent;
     border: none;
     border-radius: 0;
-    //border-bottom: 1px solid #000 !important;
-    border-bottom: 1px solid #000;
-    color: #333;
+    border-bottom: 1px solid #fff;
+    color: #ffffff;
     font-size: 32px;
     outline: 0;
     padding: 8px 0;
@@ -175,7 +175,7 @@ li.copy{
 
 /* Step 3 */
 
-.blurb3-1, .blurb3-2, .question-1-container, .question-2-container{
+#blurb3-1, #blurb3-2, #question-1-container, #question-2-container{
   padding: 120px 0;
 }
 
@@ -226,9 +226,24 @@ li.copy{
   padding-bottom: 100px;
 }
 
+#step2{
+  background: #7E6CC2;
+  height: 800px;
+}
+  
+#step3{
+  background: #5786D3;
+  padding-bottom: 100px;
+}
+
+#step4{
+  background: #1DACEC;
+  padding-bottom: 100px;
+}
+
 #browse{
   background: #3498db;
-  color: #fff;
+  padding-bottom: 100px;
 }
 
 #pad{
