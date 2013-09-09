@@ -101,31 +101,6 @@ Template.bottom.rendered = ->
         .removeAttr('href')
 
 
-Template.step4.events 
-  "click #btn": ->  
-    #Commented out to not send out email thru mailgun
-    #if png
-    #  Meteor.call "sendEmail", $("#email").val(), png
-    Emails.insert 
-      email: $("#email").val()
-      avatar: Session.get 'path'
-      share: Session.get 's3share'
-      learn: Session.get 's3learn'
-
-    #go to your avatar lot on the infinite canvas
-    max_row = Math.ceil Math.sqrt(Emails.find().count())
-    count = Emails.find().count() - 1
-    width = 500
-    wwidth = $(window).width()
-    wheight = $(window).height()
-
-    Session.set 'tx', -count%max_row*width + wwidth/2 - width/2
-    Session.set 'ty', -Math.floor(count/max_row)*width + wheight/2 - width/2
-    Session.set 's', 1
-    #go to padview
-    Meteor.Router.to 'padview'
-
-
 Template.flat.rendered = ->
   Session.set 'step', 5
 

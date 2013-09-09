@@ -24,8 +24,8 @@ Template.step3.rendered = ->
 
     setTimeout ( ->
       console.log 'wait'
-      $('.from_homepage .current').css('display', 'none')
-    ), 500
+      $('.from_step2 .current').css('display', 'none')
+    ), 1000
     
     #Step Indicator appears on the bottom
     $('#bottom').css('bottom', '0')
@@ -49,12 +49,11 @@ Template.step3.rendered = ->
     Scrollorama3()
 
 
-  Meteor.autorun ->
-    if Session.get('s3learn').length > 0 and Session.get('s3share').length > 0
-      Session.set 'nextstep', true
-    else
-      Session.set 'nextstep', false
-
+Meteor.autorun ->
+  if Session.get('s3learn')?.length > 0 and Session.get('s3share')?.length > 0
+    Session.set 'nextstep', true
+  else
+    Session.set 'nextstep', false
 
 
 Template.step3.events

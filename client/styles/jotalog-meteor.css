@@ -79,7 +79,7 @@ textarea {
     margin-left: 60px;
     resize: none;
     height: 48px;
-    width: 400px;
+    width: 424px;
     font-family: "gooddog-new", serif;
 }
 
@@ -223,7 +223,15 @@ li.copy{
 #home{
   background: #9b59b6;
   color: #fff;
+  position: relative;
   padding-bottom: 100px;
+}
+
+#home img{
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  margin-left: -50px;
 }
 
 #step2{
